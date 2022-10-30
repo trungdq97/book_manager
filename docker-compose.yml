@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  book_manager-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: [ "sh", "-c", "npm install && npm run serve" ]
+    ports:
+      - "8080:8080"
+    tty: true
