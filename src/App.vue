@@ -1,27 +1,23 @@
 <template>
-  <div id="app">
-    <component :is="layout"></component>
-  </div>
+  <v-app id="inspire">
+    <router-view />
+  </v-app>
 </template>
 
 <script>
-  import BaseLayout from './layouts/BaseLayout'
-  import MainLayout from './layouts/MainLayout'
-
   export default {
     name: 'App',
-    components: {
-      'base-layout': BaseLayout,
-      'main-layout': MainLayout
-    },
-    computed: {
-      layout() {
-        return (this.$route.meta?.layout || 'base') + '-layout'
-      },
-    }
   }
 </script>
 
-<style scoped>
-
+<style>
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
+

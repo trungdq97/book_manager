@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import log from './middleware/log'
+import ManagerLayout from "../components/layouts/ManagerLayout";
+import UserLayout from "../components/layouts/UserLayout";
+
 // import auth from './middleware/auth'
 // import store from '../store/index'
 
@@ -14,6 +17,10 @@ Vue.use(VueRouter)
 const Login = () => import(/* webpackChunkName: "static/js/chunks/Auth/Login" */'../views/Login')
 const Dashboard = () => import(/* webpackChunkName: "static/js/chunks//Dashboard" */'../views/Dashboard')
 
+const BookList = () => import(/* webpackChunkName: "static/js/chunks/Auth/Login" */'../views/manager/books/BookList')
+const UserList = () => import(/* webpackChunkName: "static/js/chunks/Auth/Login" */'../views/manager/users/UserList')
+
+
 const routes = [
     {
         path: '/login',
@@ -25,13 +32,33 @@ const routes = [
         component: Dashboard,
         name: 'Dashboard',
         meta: {
-            layout: 'main'
+            layout: 'user'
         }
     },
+
+    // router manager
     {
-        path: '*',
-        redirect: '/'
-    }
+        path: "/manager",
+        component: ManagerLayout,
+        children: [
+            {
+                path: "books",
+                name: "books",
+                component: BookList,
+            },
+            {
+                path: "users",
+                name: "users",
+                component: UserList,
+            }
+        ],
+    },
+
+    // router user
+    {
+        path: "/user",
+        component: UserLayout,
+    },
 ]
 
 const router = new VueRouter({

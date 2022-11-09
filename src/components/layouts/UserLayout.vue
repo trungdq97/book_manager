@@ -1,13 +1,13 @@
 <template>
     <div>
-        <h2>Main Layout</h2>
+        <h2>User layout</h2>
         <router-view />
     </div>
 </template>
 
 <script>
     export default {
-        name: "MainLayout"
+        name: 'UserLayout'
     }
 </script>
 
